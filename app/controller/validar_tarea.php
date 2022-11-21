@@ -7,11 +7,15 @@
     $telefono = $_POST['tel'];
     $codigo = $_POST['cp'];
     $email = $_POST['email'];
+    include "../models/consulta.php";
+    $db = consulta::getInstance();
+    include "../views/form_tarea.php";
+    
     /*Validar descripcion y Persona contacto*/
     
     if(empty($nombre)){
         echo'<p>Campo nombre obligatorio</p>';
-        include "../views/form_tarea.php";
+        
     }
     if(empty($apellidos)){
         echo'<p>Campo apellidos obligatorio</p>';

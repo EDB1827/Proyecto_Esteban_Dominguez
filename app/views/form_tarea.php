@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
 </head>
 <body>
     <form action="../controller/validar_tarea.php" method="post">
@@ -17,15 +18,19 @@
     <label>Población</label> <input type="text" id="pob" name="pob"><br>
     <label>Código postal</label> <input type="text" id="cp" name="cp"><br>
     <select>
+        
+        
         <option value="pro" selected>Provincias</option>
-        <option value="21">Huelva</option>
-        <option value="41">Sevilla</option>
-        <option value="29">Málaga</option>
-        <option value="11">Cádiz</option>
-        <option value="23">Jaén</option>
-        <option value="04">Almería</option>
-        <option value="14">Córdoba</option>
-        <option value="18">Granada</option>
+        <?php
+        $prov = $db->getProvincia();
+        foreach ($prov as $item => $value){
+            ?>
+                <option value="<?php echo $item ?>"><?php echo $value ?></option>
+                <?php
+            }
+                ?>
+           
+
     </select><br>
     <select>
         <option value="b" selected>Estado</option>
@@ -35,7 +40,21 @@
         <option value="c">Cancelada</option>
     </select><br>
     <label>Fecha de creación</label> <input type="date" id="fech1" name="fech1"><br>
-    <label>Operario</label> <input type="text" id="op" name="op"><br>
+    <select>
+        
+        
+        <option value="opr" selected>Operarios</option>
+        <?php
+        $opr = $db->getOperarios();
+        foreach ($opr as $item => $value){
+            ?>
+                <option value="<?php echo $item ?>"><?php echo $item. " ".$value ?></option>
+                <?php
+            }
+                ?>
+           
+
+    </select><br>
     <date>Fecha de realización</date> <input type="date" id="fech2" name="fech2"><br>
     <label>Anotaciones Anteriores</label><br><textarea id="aa" name="aa">Anotaciones Anteriores</textarea><br>
     <label>Anotaciones Anteriores</label><br><textarea id="ap" name="ap">Anotaciones Posteriores</textarea><br>
