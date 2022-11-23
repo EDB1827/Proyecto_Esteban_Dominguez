@@ -17,21 +17,7 @@
     <label>Dirección</label> <input type="text" id="dir" name="dir"><br>
     <label>Población</label> <input type="text" id="pob" name="pob"><br>
     <label>Código postal</label> <input type="text" id="cp" name="cp"><br>
-    <select>
-        
-        
-        <option value="pro" selected>Provincias</option>
-        <?php
-        $prov = $db->getProvincia();
-        foreach ($prov as $item => $value){
-            ?>
-                <option value="<?php echo $item ?>"><?php echo $value ?></option>
-                <?php
-            }
-                ?>
-           
-
-    </select><br>
+    <?= crearSelect('prov', PROV::listaSelect(), filter_input(INPUT_POST, 'prov')) ?><br><br>
     <select>
         <option value="b" selected>Estado</option>
         <option value="b">Esperando ser aprobada</option>
@@ -40,21 +26,7 @@
         <option value="c">Cancelada</option>
     </select><br>
     <label>Fecha de creación</label> <input type="date" id="fech1" name="fech1"><br>
-    <select>
-        
-        
-        <option value="opr" selected>Operarios</option>
-        <?php
-        $opr = $db->getOperarios();
-        foreach ($opr as $item => $value){
-            ?>
-                <option value="<?php echo $item ?>"><?php echo $item. " ".$value ?></option>
-                <?php
-            }
-                ?>
-           
-
-    </select><br>
+    <?= crearSelect('usuario', USER::listaSelect(), filter_input(INPUT_POST, 'usuario')) ?><br>
     <date>Fecha de realización</date> <input type="date" id="fech2" name="fech2"><br>
     <label>Anotaciones Anteriores</label><br><textarea id="aa" name="aa">Anotaciones Anteriores</textarea><br>
     <label>Anotaciones Anteriores</label><br><textarea id="ap" name="ap">Anotaciones Posteriores</textarea><br>

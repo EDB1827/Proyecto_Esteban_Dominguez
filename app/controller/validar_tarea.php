@@ -7,12 +7,17 @@
     $telefono = $_POST['tel'];
     $codigo = $_POST['cp'];
     $email = $_POST['email'];
-    include "../models/consulta.php";
-    $db = consulta::getInstance();
+    include "../models/connect.php";
+    include "../controller/utilform.php";
+    include "../libraries/validar_cif.php";
+    include "../models/prov.php";
+    include "../models/user.php";
+    include "../models/tarea.php";
     include "../views/form_tarea.php";
+    $db = CONNECT::getInstance();
     
     /*Validar descripcion y Persona contacto*/
-    
+ 
     if(empty($nombre)){
         echo'<p>Campo nombre obligatorio</p>';
         
@@ -30,7 +35,7 @@
     }
    
     /*Validar NIF o CIF*/
-    if(empty($dni) || !validar_dni($dni)){
+    if(empty($dni) || !validar_dni($dni) && !validarCif($dni)){
         echo "<p> NIF o CIF deben ser correctos</p>";
     }
     function validar_dni($dni){
