@@ -1,7 +1,6 @@
 <?php
 
-class CONNECT
-{
+class Connect{
     public $stmt;
     public $pdo;
     static $_instance;
@@ -47,15 +46,57 @@ class CONNECT
         return $lista;
     }
 
-    function insert($nif, $nombre, $apellidos,$clave, $correo,$telefono, $admin1){
-        $sql = "INSERT INTO tareas (cod_tarea,nif_cif,nombre,telefono,descripcion,correo,poblacion,codigoPostal,
-        provincia,estado,fechaCreacion,operarioEncargado,fechaRealizacion,anotacionesAnt,anotacionesPos)
-        VALUES(0,'48937837R','Víctor Martínez Domínguez','657121379','Caer muro','victor1@gmail.com','Valverde del Camino',
-        '21600','Huelva','P','2022-11-21','Rafael Hinestrosa','2022-11-22','Muro en mal estado','Muro derribado')";
-    $resultado = $this->db->prepare($sql);
-    $resultado->execute(array());
+    function insert($tabla, $listaValues, $campos){//Función genérica insertar en bases de datos
 
-    }
+        $cadena = '';
+
+            foreach($campos AS $id=>$valor){
+
+                $cadena .= "'" . $valor . "'";
+                
+                if($id < (count($campos) - 1)){  //Condicion para que cuando llegue al ultimo campo no ponga coma
+
+                    $cadena .= ",";
+
+                }
+            }
+            //echo $listaValues." ".$cadena;
+            $sql = "INSERT INTO " . $tabla . "(" . $listaValues . ") VALUES(" . $cadena . ")"; 
+        
+            $resultado = $this->pdo->prepare($sql);
+            $resultado->execute(array());
+
+        }
+
+        public function numFilas($tabla){
+
+            $sql = "SELECT * FROM " . $tabla; 
+
+            $resultado = $this->pdo->prepare($sql);
+            $resultado->execute();
+    
+            $numFilas = $resultado->rowCount();
+
+            return $numFilas;
+        }
+
+        public function resultadosPorPagina($tabla, $empezarDesde, $tamanioPagina){
+
+            $queryLimite = "SELECT * FROM " . $tabla . " LIMIT " . $empezarDesde . "," . $tamanioPagina;
+
+            $resultado = $this->pdo->prepare($queryLimite);
+            $resultado->execute();
+
+            //Almacenamos el resultado de fetchAll en una variable
+            $datos = $resultado->fetchAll(PDO::FETCH_ASSOC);
+    
+
+            return $datos;
+        }
+        public function login($correo, $clave){
+            $stmt = $this->pdo->query("SELECT nif FROM usuarios WHERE correo='" . $correo . "' AND clave='" . $clave . "'");
+            return $stmt->fetch();
+        }
     
 }
  ?>

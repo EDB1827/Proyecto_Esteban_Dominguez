@@ -13,7 +13,7 @@ class PROV{
 
     static function listaSelect()
     {
-        return CONNECT::getInstance()->getListaSelect('poblacion', 'codPoblacion', 'nombre');
+        return Connect::getInstance()->getListaSelect('provincias', 'codPoblacion', 'nombre');
     }
 }
 ?>
