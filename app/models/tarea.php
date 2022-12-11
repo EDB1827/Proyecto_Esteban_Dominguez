@@ -20,5 +20,30 @@ class TAREA{
        
         return Connect::getInstance()->resultadosPorPagina('tareas', $empezarDesde, $tamanioPagina);
     }
+
+
+
+
+    function updateTareas($nombres, $campos, $id){
+
+        $cadena = '';
+
+        $a_campos = explode(",", $campos);
+
+        foreach ($nombres as $valor => $contenido) {
+
+            $cadena .= $a_campos[$valor] . " = '" .  $contenido . "' ,";
+        }
+
+        $cadena = substr($cadena, 0, -1);
+
+        $sql = "UPDATE tareas SET " . $cadena ." WHERE id = $id";
+
+        $resultado = $this->pdo->prepare($sql);
+        $resultado->execute(array());
     
+    }
+
+    
+
 }

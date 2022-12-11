@@ -9,9 +9,11 @@
 </head>
 
 <body>
-    <h3>¿Estas seguro de querer borrar la tarea <?= $_GET['id'] ?> ?</h3>
-    <a href="../controllers/controlador_borrar.php?id=<?= $_GET['id'] ?>">Si</a>
-    <a href="..//controllers/procesarlistaTareas.php">No</a>
+    <form action="../controller/borrar_tarea.php" method="post">
+        <h3>¿Estas seguro de querer borrar la tarea <?= $_GET['id'] ?> ?</h3>
+        <a href="../controller/borrar_tarea.php?id=<?= $_GET['id'] ?>">Si</a>
+        <a href="..//controller/procesar_lista_tarea.php">No</a>
+    </form>
 </body>
 
 </html>

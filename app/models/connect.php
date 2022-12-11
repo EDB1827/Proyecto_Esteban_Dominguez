@@ -80,9 +80,28 @@ class Connect{
             return $numFilas;
         }
 
+        function delete($tabla, $listaValues){//Función genérica para eliminar tareas en bases de datos
+
+            $cadena = '';
+                $sql = "DELETE FROM " . $tabla . "(" . $listaValues . ") VALUES(" . $cadena . ")"; 
+            
+                $resultado = $this->pdo->prepare($sql);
+                $resultado->execute(array());
+    
+            }
+        function modificar(){
+
+        }
+
+        
+
         public function resultadosPorPagina($tabla, $empezarDesde, $tamanioPagina){
 
-            $queryLimite = "SELECT * FROM " . $tabla . " LIMIT " . $empezarDesde . "," . $tamanioPagina;
+            $queryLimite = "SELECT id,nif_cif,nombre,apellidos,telefono,descripcion,correo,direccion,poblacion,
+            codigo_postal,provincias,estado,DATE_FORMAT(fecha_creacion, '%d/%m/%Y') AS fecha_creacion,operario_encargado, 
+            DATE_FORMAT(fecha_realizacion, '%d/%m/%Y') AS fecha_realizacion,
+            anotaciones_ant,anotaciones_pos,arch_resumen,fotos FROM $tabla
+             ORDER BY fecha_realizacion " .  " LIMIT " . $empezarDesde . "," . $tamanioPagina;
 
             $resultado = $this->pdo->prepare($queryLimite);
             $resultado->execute();
@@ -97,6 +116,10 @@ class Connect{
             $stmt = $this->pdo->query("SELECT nif FROM usuarios WHERE correo='" . $correo . "' AND clave='" . $clave . "'");
             return $stmt->fetch();
         }
+
+        
+
+       
     
 }
  ?>

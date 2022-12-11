@@ -14,6 +14,9 @@
     <form action="../controller/validar_tarea.php">
         <input type="submit" value="Nueva incidencia/tarea" />
     </form>
+    <form action="../controller/validar_tarea.php">
+        <input type="submit" value="Nueva incidencia/tarea" />
+    </form>
     
 
 

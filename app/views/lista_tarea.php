@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="">
 </head>
 <body>
-    <?= creaTabla('lista_tarea', $nombreCampos, Tarea::getTareasPorPagina($empezarDesde, $tamanioPagina)) ?>
+    <?= creaTabla('lista_tarea.php', $nombreCampos, TAREA::getTareasPorPagina($empezarDesde, $tamanioPagina )) ?>
  
 </body>
 </html>

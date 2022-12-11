@@ -1,5 +1,5 @@
 <?php
-    function validar_codigoPostal($codigo)
+    function validar_cp($codigo)
     {
         $a = "^[0-5][1-9]{3}[0-9]$";
         if (preg_match("/$a/", $codigo)) {
@@ -8,7 +8,7 @@
             return false;
         }
     }
-    if (empty($_POST["codigo_postal"]) || !validar_codigoPostal($codigo_postal)) {
+    if (empty($_POST["codigo_postal"]) || !validar_cp($codigo_postal)) {
         $errores['codigo_postal'] = 'Código Postal incorrecto';
         $hayError = TRUE;
     }

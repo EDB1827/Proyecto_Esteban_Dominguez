@@ -4,14 +4,10 @@
     include('../models/connect.php');
     include('../libraries/crear_tabla.php');
 
-    //$listaTareas = Tarea::getListaTareas();
 
     $nombreCampos = [
-        'id','nif_cif','nombre','apellidos','telefono','descripcion','correo','direccion','poblacion',
-        'codigo_postal','provincias','estado','fecha_creacion','operario_encargado','fecha_realizacion',
-        'anotaciones_ant','anotaciones_pos','arch_resumen','fotos'
-    ];
-
+        'id','nif_cif','nombre','apellidos','telefono','descripcion','correo','direccion','poblacion'
+    ]; //Mostrar Tareas sin todos los campos
 
      // Preparar
 

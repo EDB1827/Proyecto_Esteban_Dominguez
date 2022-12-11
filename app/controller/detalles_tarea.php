@@ -39,7 +39,7 @@
 
     $registro = TAREA::getTareasPorPagina($empezarDesde, $tamanioPagina);
 
-    include('../views/form_detalles.php');
+    include('../views/form_detalles_tarea.php');
 
         for($i = 1; $i <= $totalPaginas; $i++){
 

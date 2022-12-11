@@ -1,6 +1,6 @@
 <?php
 
-    function validarCif($cif) {
+    function validar_cif($cif) {
 
     $cif = strtoupper($cif);
 
